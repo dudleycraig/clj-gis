@@ -1,0 +1,41 @@
+{
+  "name": "gis client",
+  "version": "0.1.0",
+  "description": "GIS experimentation in cljs",
+  "private": true,
+  "scripts": {
+    "node-sass": "node-sass -w ./src/styles/core.scss ./public/css/core.css --output-style compressed",
+    "dev": "shadow-cljs watch app",
+    "start": "concurrently 'npm:dev' 'npm:node-sass'"
+  },
+  "dependencies": {
+    "@blueprintjs/core": "^3.49.0",
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-regular-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "@react-three/drei": "^7.3.1",
+    "@react-three/fiber": "^7.0.6",
+    "@restart/hooks": "0.3.27",
+    "bootstrap": "^4.5.3",
+    "bootswatch": "^4.5.2",
+    "create-react-class": "^15.6.2",
+    "drei": "^2.2.21",
+    "moment": "^2.29.1",
+    "prop-types-extra": "^1.1.1",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.1",
+    "react-dom": "^17.0.2",
+    "react-overlays": "^5.1.1",
+    "three": "^0.131.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.3.3",
+    "concurrently": "^5.3.0",
+    "node-sass": "^6.0.1",
+    "shadow-cljs": "^2.15.8",
+    "stylelint": "^13.7.1"
+  }
+}
