@@ -5,9 +5,8 @@
             [gis.components.app :as app]))
 
 (defn handler
-  "application handler"
-  [mount-id router]
-  (reagent-dom/render [app/component] (. js/document getElementById mount-id)))
+  [{:keys [mount-id]} firebase]
+  (reagent-dom/render [app/component firebase] (. js/document getElementById mount-id)))
 
 (comment
   (in-ns 'gis.app))

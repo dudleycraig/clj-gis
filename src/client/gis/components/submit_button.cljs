@@ -33,6 +33,3 @@
   ([status title] [view status title faArrowUp])
   ([status title icon] [view status title icon]))
 
-
-
-

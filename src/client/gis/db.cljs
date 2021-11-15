@@ -1,6 +1,8 @@
 (ns gis.db
   (:require [utilities.form :as form]))
 
+(def app {:status "inert"})
+
 (def contact
   {:status "inert"
    :messages {}

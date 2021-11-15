@@ -3,6 +3,7 @@
 /build
 /public/js/cljs-runtime
 /public/gltf
+.shadow-cljs
 
 # dev
 /dev
@@ -15,11 +16,14 @@
 .pnp.js
 
 # runtime
+/shadow-cljs
 .cpcache
 .nrepl.edn
 
 # configs
-.firebase
+.firebaserc
+firebase.json
+firestore.*
 config.js
 rollup.config.js
 .DS_Store

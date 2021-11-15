@@ -8,8 +8,13 @@
     "dev": "shadow-cljs watch app",
     "start": "concurrently 'npm:dev' 'npm:node-sass'"
   },
+  "browserslist": [
+    "last 1 Chrome version"
+  ],
   "dependencies": {
     "@blueprintjs/core": "^3.49.0",
+    "@firebase/auth": "^0.19.2",
+    "@firebase/firestore": "^3.3.0",
     "@fortawesome/fontawesome-free": "^5.14.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
@@ -23,6 +28,7 @@
     "bootswatch": "^4.5.2",
     "create-react-class": "^15.6.2",
     "drei": "^2.2.21",
+    "firebase": "^9.4.0",
     "moment": "^2.29.1",
     "prop-types-extra": "^1.1.1",
     "react": "^17.0.2",
@@ -33,7 +39,11 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.3.3",
+    "babel-polyfill": "^6.26.0",
     "concurrently": "^5.3.0",
+    "firebase-admin": "^10.0.0",
+    "firebase-functions": "^3.16.0",
+    "firebase-tools": "^9.22.0",
     "node-sass": "^6.0.1",
     "shadow-cljs": "^2.15.8",
     "stylelint": "^13.7.1"

@@ -13,11 +13,11 @@
 
 (defn component
   "stage view"
-  []
+  [firebase]
   [:<>
    [header/component]
    [:div {:class "container text-center" :style {:min-height "100vh"}}
     [:div {:class "row"}
      [:div {:class "col-xl-10 col-12 col" :style {:margin-top "70px"}}
-     [router/component]]]]
+     [router/component firebase]]]]
    [footer/component]])

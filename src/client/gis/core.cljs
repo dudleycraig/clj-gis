@@ -1,5 +1,7 @@
 (ns gis.core
-  (:require [gis.system :as system]))
+  (:require 
+    ["babel-polyfill"]
+    [gis.system :as system]))
 
 (defn before-load
   "shadow-cljs hook before browser reload"

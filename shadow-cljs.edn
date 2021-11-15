@@ -3,22 +3,29 @@
 ;; https://github.com/AutoScreencast/create-reagent-app/tree/master/templates/basic
 ;; editor setup from
 ;; https://bubbleuptoppop.com/blog/vim-iced-clojurescript/
-{:deps {:aliases [:client :common :dev]}
- :builds {:app {:target :browser
+{:deps 
+ {:aliases [:client :common :dev]}
+ :builds 
+ {:app 
+  {:target :browser
 
-                ;; prevent non-declared variables in libraries breaking build
-                :js-options {:entry-keys ["module" "browser" "main"]} 
+   ;; prevent non-declared variables in libraries breaking build
+   :js-options 
+   {:entry-keys ["module" "browser" "main"]} 
 
-                :output-dir "public/js"
-                :asset-path "/js"
-                :module-hash-names true
-                :modules {:package {:init-fn gis.core/init
-                                    :entries [gis.core]}}
-                :build-hooks [(shadow.cljs.build-report/hook)]
-                :devtools {:before-load gis.core/before-load
-                           :after-load gis.core/after-load
-                           :watch-dir "public"
-                           :watch-path "public"
-                           :http-root "public"
-                           :http-port 8081}}}}
+   :output-dir "public/js"
+   :asset-path "/js"
+   :module-hash-names true
+   :modules 
+   {:package 
+    {:init-fn gis.core/init
+     :entries [gis.core]}}
+   :build-hooks [(shadow.cljs.build-report/hook)]
+   :devtools 
+   {:before-load gis.core/before-load
+    :after-load gis.core/after-load
+    :watch-dir "public"
+    :watch-path "public"
+    :http-root "public"
+    :http-port 8081}}}}
 

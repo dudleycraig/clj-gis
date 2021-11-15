@@ -3,26 +3,21 @@
             [gis.db :as db]
             [utilities.form :as form]))
 
-(re-frame/reg-sub
-  ::get-field-by-key
+(re-frame/reg-sub 
+  ::get-field-by-key 
   (fn 
-   [db [_ field-key]] 
-   (get-in db [:fields field-key])))
+    [db [_ field-key]] 
+    (get-in db [:fields field-key])))
 
-(re-frame/reg-sub
- ::get-field-value-by-key
- (fn
-   [db [_ field-key]]
-   (get-in db [:fields field-key :value])))
+(re-frame/reg-sub 
+  ::get-field-property-by-key 
+  (fn 
+    [db [_ field-key property-key]] 
+    (get-in db [:fields field-key property-key])))
 
-(re-frame/reg-sub
- ::get-field-messages-by-key
- (fn
-   [db [_ field-key]]
-   (get-in db [:fields field-key :messages])))
+(re-frame/reg-sub 
+  ::get-form-property-by-key
+  (fn 
+    [db [_ property-key]] 
+    (db property-key)))
 
-(re-frame/reg-sub
- ::get-field-status-by-key
- (fn
-   [db [_ field-key]]
-   (get-in db [:fields field-key :status])))
