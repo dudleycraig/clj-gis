@@ -1,11 +1,13 @@
 (ns gis.system
   "System state management"
   (:require [re-frame.core :as re-frame]
-            [integrant.core :as integrant-core]
+            [integrant.core :as integrant]
+            [aero.core :as aero]
             [gis.firebase :as firebase]
             [gis.router :as router]
             [gis.app :as app]
             [gis.db :as db]
+
             [gis.components.home :as home]
             [gis.components.about :as about]
             [gis.pages.portfolio :as portfolio]
@@ -20,8 +22,8 @@
     :config
     {:mount-id "root"}
     :resources
-    {:router (integrant-core/ref ::router)
-     :firebase (integrant-core/ref ::firebase)}}
+    {:router (integrant/ref ::router)
+     :firebase (integrant/ref ::firebase)}}
 
    ::router
    {:handler router/handler
@@ -45,31 +47,35 @@
                 "measurementId" "G-S3RWRYJ7VL",
                 "databaseURL" "https://functional-256207-default-rtdb.europe-west1.firebasedatabase.app"}}})
 
-(defmethod integrant-core/init-key ::firebase 
+(defmethod integrant/init-key ::aero
   [_ {:keys [handler config]}]
   (handler config))
 
-(defmethod integrant-core/init-key ::router 
+(defmethod integrant/init-key ::firebase 
+  [_ {:keys [handler config]}]
+  (handler config))
+
+(defmethod integrant/init-key ::router 
   [_ {:keys [handler config resources]}]
   (handler config resources))
 
-(defmethod integrant-core/init-key ::app 
+(defmethod integrant/init-key ::app 
   [_ {:keys [handler config resources]}]
   (handler config resources))
 
-(defmethod integrant-core/halt-key! ::app 
+(defmethod integrant/halt-key! ::app 
   [_ {:keys [app]}]
   (.stop app))
 
 (defn go
   "Start system"
   []
-  (reset! system (integrant-core/init system-config)))
+  (reset! system (integrant/init system-config)))
 
 (defn halt!
   "Stop system"
   []
   (when @system
-    (integrant-core/halt! @system)
+    (integrant/halt! @system)
     (reset! system nil)))
 

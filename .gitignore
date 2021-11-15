@@ -1,7 +1,11 @@
 
+/config.edn
+
 # production
 /build
 /public/js/cljs-runtime
+/public/js/manifest.edn
+/public/js/package.js
 /public/gltf
 .shadow-cljs
 
