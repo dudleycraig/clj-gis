@@ -9,18 +9,23 @@
  {:app 
   {:target :browser
 
-   ;; prevent non-declared variables in libraries breaking build
-   :js-options 
+   :build-hooks [(build/load-env)]
+   ;; :build-hooks [(shadow.cljs.build-report/hook)]
+
+   :js-options ;; prevent non-declared variables in libraries breaking build
    {:entry-keys ["module" "browser" "main"]} 
 
    :output-dir "public/js"
+
    :asset-path "/js"
+
    :module-hash-names true
+
    :modules 
    {:package 
     {:init-fn gis.core/init
      :entries [gis.core]}}
-   :build-hooks [(shadow.cljs.build-report/hook)]
+
    :devtools 
    {:before-load gis.core/before-load
     :after-load gis.core/after-load

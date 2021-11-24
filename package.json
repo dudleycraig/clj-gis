@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "node-sass": "node-sass -w ./src/styles/core.scss ./public/css/core.css --output-style compressed",
-    "dev": "shadow-cljs watch app",
+    "dev": "shadow-cljs watch app --config-merge config.edn",
     "start": "concurrently 'npm:dev' 'npm:node-sass'"
   },
   "browserslist": [

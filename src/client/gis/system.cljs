@@ -1,20 +1,24 @@
 (ns gis.system
   "System state management"
-  (:require [re-frame.core :as re-frame]
-            [integrant.core :as integrant]
-            [aero.core :as aero]
-            [gis.firebase :as firebase]
-            [gis.router :as router]
-            [gis.app :as app]
-            [gis.db :as db]
+  (:require 
+    [re-frame.core :as re-frame]
+    [integrant.core :as integrant]
 
-            [gis.components.home :as home]
-            [gis.components.about :as about]
-            [gis.pages.portfolio :as portfolio]
-            [gis.pages.contact :as contact]
-            [gis.components.resume :as resume]))
+    [gis.env :as env]
+    [gis.firebase :as firebase]
+    [gis.router :as router]
+    [gis.app :as app]
+    [gis.db :as db]
+
+    [gis.components.home :as home]
+    [gis.components.about :as about]
+    [gis.pages.portfolio :as portfolio]
+    [gis.pages.contact :as contact]
+    [gis.components.resume :as resume]))
 
 (defonce system (atom nil))
+
+(def external-config (env/get-config-map))
 
 (def system-config
   {::app
@@ -38,18 +42,16 @@
 
    ::firebase
    {:handler firebase/handler
-    :config #js{"apiKey" "AIzaSyDegND1W5CPpHnlcT3f0AwICkJwI8QWQvY",
-                "authDomain" "functional-256207.firebaseapp.com",
-                "projectId" "functional-256207",
-                "storageBucket" "functional-256207.appspot.com",
-                "messagingSenderId" "996616380561",
-                "appId" "1:996616380561:web:406750a7fa6668ac8e5f30",
-                "measurementId" "G-S3RWRYJ7VL",
-                "databaseURL" "https://functional-256207-default-rtdb.europe-west1.firebasedatabase.app"}}})
-
-(defmethod integrant/init-key ::aero
-  [_ {:keys [handler config]}]
-  (handler config))
+    :config 
+    #js{"apiKey" (get-in external-config [:db :firebase :api-key]),
+        "authDomain" (get-in external-config [:db :firebase :auth-domain]),
+        "projectId" (get-in external-config [:db :firebase :project-id]),
+        "storageBucket" (get-in external-config [:db :firebase :storage-bucket]),
+        "messagingSenderId" (get-in external-config [:db :firebase :messaging-sender-id]),
+        "appId" (get-in external-config [:db :firebase :app-id]),
+        "measurementId" (get-in external-config [:db :firebase :measurement-id]),
+        "databaseURL" (get-in external-config [:db :firebase :database-url])}
+    :resources {}}})
 
 (defmethod integrant/init-key ::firebase 
   [_ {:keys [handler config]}]
@@ -78,4 +80,6 @@
   (when @system
     (integrant/halt! @system)
     (reset! system nil)))
+
+(comment)
 
